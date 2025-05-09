@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form input[type="text"] {
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    form button {
+      padding: 12px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: #0056b3;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .actions button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .actions button:nth-child(2) {
+      background-color: #17a2b8;
+    }
+
+    .actions button:nth-child(3) {
+      background-color: #ff4081;
+    }
+
+    .actions button:hover {
+      opacity: 0.9;
+    }
+
+    .error {
+      color: red;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Enrollment Number</h2>
+    <form method="POST">
+      <input type="text" id="er_no" name="er_no" placeholder="Enrollment Number" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if admit_card_url %}
+    <div class="actions">
+      <h3>Generated:</h3>
+      <button onclick="window.open('{{ admit_card_url }}', '_blank')">View Admit Card</button>
+      <button onclick="window.open('{{ verification_card_url }}', '_blank')">View Verification Card</button>
+      <button onclick="window.open('{{ insta_url }}', '_blank')">Follow us on instagram</button>
+      <button onclick="window.open('{{ youtube }}', '_blank')">Join us on youtube</button>
+      
+    </div>
+    {% elif error %}
+    <div class="error">
+      <h4>Try again. At this moment, we can't get your data.</h4>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
